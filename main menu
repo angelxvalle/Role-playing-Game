@@ -1,0 +1,132 @@
+#include <iostream>
+#include <Windows.h>
+#include <string>
+#include <iomanip>
+#include <cwchar>
+
+using namespace std;
+
+int main()
+{
+	string Menu[3] = { "Start Game", "See Rules", "Exit" }, characterMenu[2] = { "Human", "Exo Human"}, name = " "; //array for menu
+	int pointer = 0;
+
+	while (true)
+	{
+		system("cls");
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15); //change color to white
+		cout << "Main Menu\n\n";
+		for (int i = 0; i < 3; ++i)
+		{
+			if (i == pointer)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); //blue
+				cout << Menu[i] << endl;
+			}
+			else
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				cout << Menu[i] << endl;
+			}
+		}
+		while (true)
+		{
+			if (GetAsyncKeyState(VK_UP) != 0) //arrow key up code
+			{
+				pointer -= 1;
+				if (pointer == -1) //pointer can't be -1, switches it back to 2
+				{
+					pointer = 2;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_DOWN) != 0) //arrow key down code
+			{
+				pointer += 1;
+				if (pointer == 3) //pointer gets switched backed down to 0 for loop purpose
+				{
+					pointer = 0;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_RETURN) != 0) //enter command code
+			{
+				switch (pointer)
+				{
+				case 0:
+				{
+					system("cls");
+					CONSOLE_FONT_INFOEX cfi;
+					cfi.cbSize = sizeof(cfi);
+					cfi.nFont = 0;
+					cfi.dwFontSize.X = 0;                   // Width of each character in the font
+					cfi.dwFontSize.Y = 21;                  // Height
+					cfi.FontFamily = FF_DONTCARE;
+					cfi.FontWeight = FW_NORMAL;
+					wcscpy_s(cfi.FaceName, L"Consolas"); // Choose your font
+					SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+
+					cout << setw(20) << "Font: Consolas, Size: 21\n";
+					cout << "\t\t\t\t\t\t\t\t\t\tWelcome to Space Age\n";
+					cout << "\t\t\tThe war has just ended. The human race was able to push back the alien species into hiding, but in the process created a new race. Exo humans. \n\t\tThese creatures are human in nature, but are"
+						<< " completely robotic. They live peacefully with humans and helped during the Great War. Intelligence has shown \n\t\tthat the aliens are back, but this time with help from the titans from the Andromeda Galaxy."
+						<< " Your mission is to inform the residents of Titus before it is too late.";
+					Sleep(20000);
+					cout << "Choose your race guardian.";
+					for (int i = 0; i < 3; ++i)
+		{
+			if (i == pointer)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); //blue
+				cout << characterMenu[i] << endl;
+			}
+			else
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				cout << characterMenu[i] << endl;
+			}
+		}
+		while (true)
+		{
+			if (GetAsyncKeyState(VK_UP) != 0) //arrow key up code
+			{
+				pointer -= 1;
+				if (pointer == -1) //pointer can't be -1, switches it back to 2
+				{
+					pointer = 2;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_DOWN) != 0) //arrow key down code
+			{
+				pointer += 1;
+				if (pointer == 3) //pointer gets switched backed down to 0 for loop purpose
+				{
+					pointer = 0;
+				}
+				break;
+			}
+			else if (GetAsyncKeyState(VK_RETURN) != 0) //enter command code
+
+
+
+				} break;
+				case 1:
+				{
+					system("cls");
+					cout << "Include rules here."; //These are the rules for the game
+					Sleep(1000); //REMEMBER TO LOOP BACK INTO THE MAIN MENU.
+				}break;
+				case 2:
+				{
+					return 0; 
+				}break;
+				}
+			}
+		}
+		Sleep(200);
+	}
+
+	return (0);
+}
